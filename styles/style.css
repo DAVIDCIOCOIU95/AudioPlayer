@@ -12,7 +12,12 @@ body {
   color: white;
 }
 
+.audio-container .audio-logo {
+  max-width: 100px;
+}
+
 .audio-player {
+  display: none;
   /* Standard code to allow range bar customization */
   /* Thumb style */
   /* Special styling for WebKit/Blink */
@@ -162,10 +167,12 @@ body {
           justify-content: space-between;
 }
 
-.audio-details .audio-content {
-  padding: 0 18px;
+.audio-details {
+  display: none;
+}
+
+.audio-details .playing-audio-description {
   display: none;
   overflow: hidden;
-  background-color: #f1f1f1;
 }
 /*# sourceMappingURL=style.css.map */

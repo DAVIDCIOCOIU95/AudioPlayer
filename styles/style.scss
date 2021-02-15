@@ -23,9 +23,14 @@ body {
 .audio-container {
     background-color: #22292F;
     color: white;
+    
+    .audio-logo {
+    max-width: 100px;
+    }
 }
-.audio-player {
 
+.audio-player {
+    display: none;
     // Audio Player: standard code required for audio player customization
     /* Standard code to allow range bar customization */
     input[type=range] {
@@ -173,10 +178,9 @@ body {
 }
 
 .audio-details {
-    .audio-content {
-        padding: 0 18px;
+    display: none;
+    .playing-audio-description {
         display: none;
         overflow: hidden;
-        background-color: #f1f1f1;
     }
 }

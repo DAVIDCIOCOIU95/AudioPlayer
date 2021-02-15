@@ -29,10 +29,10 @@
     <!-- Audio player -->
     <div class="audio-container">
       <div class="audio-header">
-        <button>Startup</button>
-        <div class="audio-title">
-          <h2>Startup Survival: Podcast Series</h2>
-          <p>Publication Date</p>
+        <img class="audio-logo" src="./podcast-logo.jpg"/>
+        <div class="audio-description">
+          <h2 class="playing-audio-title">Startup Survival: Podcast Series</h2>
+          <p class="playing-audio-publication-date"></p>
         </div>
       </div>
 
@@ -66,13 +66,13 @@
             </button>
           </div>
           <div class="playback-controls">
-            <button onclick="skip('back')" class="">
+            <button onclick="skip('back')" class="btn-skip">
               <i class="fa fa-backward"></i>
             </button>
-            <button onclick="playpause('song1')" class="">
+            <button onclick="playpause('song1')" class="btn-playpause">
               <i class="fa fa-play fa-2x"></i>
             </button>
-            <button onclick="skip('fwd')" class="">
+            <button onclick="skip('fwd')" class="btn-skip">
               <i class="fa fa-forward"></i>
             </button>
           </div>
@@ -89,18 +89,62 @@
       </div>
 
       <div class="audio-details">
-        <button type="button" class="collapsible">Open Collapsible</button>
-        <div class="audio-content">
-          <p>
+        <button type="button" class="collapsible">Episode Details</button>
+          <p class="playing-audio-description">
             Lorem ipsum... Lorem ipsum... Lorem ipsum... Lorem ipsum... Lorem
             ipsum...
           </p>
-        </div>
       </div>
     </div>
 
     <div class="audio-list-container">
-        
+      <div class="audio-item">
+        <button
+          class="btn-audio"
+          data-songaudio="./podcast-series-1-episode-1.mp3"
+          onclick="onSongClicked(this)"
+        >
+          Mindest
+        </button>
+        <div class="details">
+          <h3 class="audio-title">Episode 1: Mindset</h3>
+          <p class="publication-date">April 02, 2020</p>
+          <p class="description">
+            Learn how to adopt a mindset that allows you to handle this crisis
+            with purpose. Understand how customers are thinking and feeling and
+            how you should approach them. Discover a direction for your venture
+            and learn what speed to move at and how best to use your time.
+          </p>
+        </div>
+        <button class="btn-tips">
+          <i class="fa fa-lightbulb-o"></i>
+        </button>
+      </div>
+
+      <div class="audio-item">
+        <button
+          class="btn-audio"
+          data-songaudio="./podcast-series-1-episode-2.mp3"
+          onclick="onSongClicked(this)"
+        >
+          Resilience
+        </button>
+        <div class="details">
+          <h3 class="audio-title">Episode 2: Resilience</h3>
+          <p class="publication-date">April 10, 2020</p>
+          <p class="description">
+            Meet mindfulness expert Martin Summerfield who shares his insight
+            and thoughts for developing resilience in challenging times. By
+            listening to this podcast you’ll learn more about the mind as well
+            as tools to help you navigate through the crisis. You’ll also
+            discover valuable reference texts, all recommended to help you make
+            sense of what’s happening in your startup world.
+          </p>
+        </div>
+        <button class="btn-tips">
+          <i class="fa fa-lightbulb-o"></i>
+        </button>
+      </div>
     </div>
 
     <script src="./script.js" type="text/javascript"></script>
