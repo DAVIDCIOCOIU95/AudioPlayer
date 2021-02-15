@@ -1,0 +1,182 @@
+// Globals
+$track-color: #ffffff;
+$track-height: 1.5px;
+$track-border-radius: 10px;
+
+$primary-color:#FD6D04;
+$thumb-border: 0;
+$thumb-border-radius: 100%;
+$thumb-width: 10px;
+$thumb-height: 10px;
+
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+}
+
+* {
+    :focus {
+        outline: none;
+    }
+}
+
+.audio-container {
+    background-color: #22292F;
+    color: white;
+}
+.audio-player {
+
+    // Audio Player: standard code required for audio player customization
+    /* Standard code to allow range bar customization */
+    input[type=range] {
+        -webkit-appearance: none;
+        /* Hides the slider so that custom slider can be made */
+        width: 100%;
+        /* Specific width is required for Firefox. */
+        background: transparent;
+        /* Otherwise white in Chrome */
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+
+    input[type=range]:focus {
+        outline: none;
+        /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+    }
+
+    input[type=range]::-ms-track {
+        width: 100%;
+        cursor: pointer;
+
+        /* Hides the slider so custom styles can be added */
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    // End standard code for audio player
+
+    // Audio player customization
+    /* Thumb style */
+    /* Special styling for WebKit/Blink */
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: $thumb-height;
+        width: $thumb-width;
+        border: $thumb-border;
+        border-radius: $thumb-border-radius;
+        background: $primary-color;
+        cursor: pointer;
+        margin-top: -4px;
+
+        /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    /* All the same stuff for Firefox */
+    input[type=range]::-moz-range-thumb {
+        height: $thumb-height;
+        width: $thumb-width;
+        border: $thumb-border;
+        border-radius: $thumb-border-radius;
+        background: $primary-color;
+        cursor: pointer;
+    }
+
+    /* All the same stuff for IE */
+    input[type=range]::-ms-thumb {
+        height: $thumb-height;
+        width: $thumb-width;
+        border: $thumb-border;
+        border-radius: $thumb-border-radius;
+        background: $primary-color;
+        cursor: pointer;
+    }
+
+    /* Track style */
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        background: $track-color;
+        border-radius: $track-border-radius;
+
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: $track-color;
+    }
+
+    input[type=range]::-moz-range-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        background: $track-color;
+        border-radius: $track-border-radius;
+
+    }
+
+    input[type=range]::-ms-track {
+        width: 100%;
+        height: $track-height;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        border-width: 16px 0;
+        color: transparent;
+    }
+
+    input[type=range]::-ms-fill-lower {
+        background: $track-color;
+        border-radius: $track-border-radius;
+    }
+
+    input[type=range]:focus::-ms-fill-lower {
+        background: $track-color;
+    }
+
+    input[type=range]::-ms-fill-upper {
+        background: $track-color;
+        border-radius: $track-border-radius;
+    }
+
+    input[type=range]:focus::-ms-fill-upper {
+        background: $track-color;
+    }
+}
+
+
+
+
+
+.audio-header {
+    display: flex;
+    flex-direction: row;
+
+    button {
+        display: inline;
+    }
+
+    h2 {
+        display: inline;
+    }
+}
+
+.audio-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.audio-details {
+    .audio-content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+}
