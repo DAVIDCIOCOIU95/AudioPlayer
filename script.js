@@ -18,6 +18,7 @@ var song = new Audio();
 var muted = false;
 var vol = 1;
 var spe = 1;
+var curtime = 0;
 
 function onSongClicked(thisObject) {
   // Show player and details
@@ -39,57 +40,32 @@ function onSongClicked(thisObject) {
   song.currentTime = 0;
   song.playbackRate = spe;
 
-  document.querySelector(".total-duration").innerHTML = "00:00";
-  song.addEventListener("timeupdate", function () {
-    curtime = parseInt(song.currentTime, 10);
-    document.getElementById("seek").max = song.duration;
-    document.getElementById("seek").value = curtime;
-
-    // Calculate the time left and the total duration
-    let currentMinutes = Math.floor(song.currentTime / 60);
-    let currentSeconds = Math.floor(song.currentTime - currentMinutes * 60);
-    let durationMinutes = Math.floor(song.duration / 60);
-    let durationSeconds = Math.floor(song.duration - durationMinutes * 60);
-
-    // Add a zero to the single digit time values
-    if (currentSeconds < 10) {
-      currentSeconds = "0" + currentSeconds;
-    }
-    if (durationSeconds < 10) {
-      durationSeconds = "0" + durationSeconds;
-    }
-    if (currentMinutes < 10) {
-      currentMinutes = "0" + currentMinutes;
-    }
-    if (durationMinutes < 10) {
-      durationMinutes = "0" + durationMinutes;
-    }
-
-    document.querySelector(".total-duration").innerHTML =
-      durationMinutes + ":" + durationSeconds;
-    document.querySelector(".current-time").innerHTML =
-      currentMinutes + ":" + currentSeconds;
-  });
+  // Once the song is loaded
+  song.onloadedmetadata = () => {
+    timeUpdateListener();
+  }
 
   // Set other parameters
   // Set title
   var playingPodcastTitle = selectedSongElement.parentNode.querySelector(
     ".audio-title"
   );
-  document.querySelector(".playing-audio-title").innerHTML = playingPodcastTitle.innerHTML;
+  document.querySelector(".playing-audio-title").innerHTML =
+    playingPodcastTitle.innerHTML;
 
   // Set publication date
   var playingPodcastDate = selectedSongElement.parentNode.querySelector(
     ".publication-date"
   );
-  document.querySelector(".playing-audio-publication-date").innerHTML = playingPodcastDate.innerHTML;
+  document.querySelector(".playing-audio-publication-date").innerHTML =
+    playingPodcastDate.innerHTML;
 
   // Set description
   var playingPodcastDescription = selectedSongElement.parentNode.querySelector(
     ".description"
   );
-  document.querySelector(".playing-audio-description").innerHTML = playingPodcastDescription.innerHTML;
-
+  document.querySelector(".playing-audio-description").innerHTML =
+    playingPodcastDescription.innerHTML;
 }
 
 function skip(time) {
@@ -129,4 +105,40 @@ function setPos(pos) {
 function setSpeed(speed) {
   song.playbackRate = speed;
   spe = speed;
+}
+
+song.addEventListener("timeupdate", () => {
+  if(!isNaN(song.duration)) {timeUpdateListener()}
+});
+
+function timeUpdateListener() {
+        document.querySelector(".total-duration").innerHTML = "00:00";
+        curtime = parseInt(song.currentTime, 10);
+        document.getElementById("seek").max = song.duration;
+        document.getElementById("seek").value = curtime;
+    
+        // Calculate the time left and the total duration
+        let currentMinutes = Math.floor(song.currentTime / 60);
+        let currentSeconds = Math.floor(song.currentTime - currentMinutes * 60);
+        let durationMinutes = Math.floor(song.duration / 60);
+        let durationSeconds = Math.floor(song.duration - durationMinutes * 60);
+    
+        // Add a zero to the single digit time values
+        if (currentSeconds < 10) {
+          currentSeconds = "0" + currentSeconds;
+        }
+        if (durationSeconds < 10) {
+          durationSeconds = "0" + durationSeconds;
+        }
+        if (currentMinutes < 10) {
+          currentMinutes = "0" + currentMinutes;
+        }
+        if (durationMinutes < 10) {
+          durationMinutes = "0" + durationMinutes;
+        }
+    
+        document.querySelector(".total-duration").innerHTML =
+          durationMinutes + ":" + durationSeconds;
+        document.querySelector(".current-time").innerHTML =
+          currentMinutes + ":" + currentSeconds;
 }
